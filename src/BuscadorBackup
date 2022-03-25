@@ -1,0 +1,491 @@
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// //////////////////////////////Cuarto mosquetón/////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// import React, {Component, useState, useEffect, useRef } from "react"
+// import Select from 'react-select'
+// // "react-select/dist/declarations/src/Select"
+// import ListaPersonajesDescubiertos from './ListaPersonajesDescubiertos'
+// import ListaNavesDescubiertas from './ListaNavesDescubiertas'
+// import ListaPlanetasDescubiertos from './ListaPlanetasDescubiertos'
+// import RecuperadorElementos from "./RecuperadorElementos"
+// import { getValue } from "@testing-library/user-event/dist/utils"
+
+// const elementosSelect = [
+//     // { value: 'todos', label: 'Todos' },
+//     { value: 'personajes', label: 'Personajes' },
+//     { value: 'naves', label: 'Naves'},
+//     { value: 'planetas', label: 'Planetas'}
+// ]
+
+// //#region
+// const estilosSelect1 = {
+//     option: base => ({
+//         ...base,
+//         borderBottom: '1px dotted pink',
+//         color: 'red'
+//     }),
+//     control: (provided, state) => ({
+//         ...provided,
+//         background: '#bbb',
+//         borderColor: 'goldenrod',
+//         minHeight: '10px',
+//         height: 'auto',
+//         innerHeight: '5px',
+//         outerHeight: '5px',
+//         maxMenuHeight: '5px',
+//         margin: '10px'
+//     }),
+//     valueContainer: (provided, state) => ({
+//         ...provided,
+//         height: 'auto',
+//         padding: '0 6px'
+//     }),
+
+//     input: (provided, state) => ({
+//         ...provided,
+//         margin: '0px',
+//         padding: '0px',
+//         height: 'auto',
+
+//     }),
+
+//     placeholder: (provided, state) => ({
+//         ...provided,
+//         height: '18px'
+//     }),
+//     indicatorSeparator: state => ({
+//         display: 'none',
+//     }),
+//     indicatorsContainer: (provided, state) => ({
+//         ...provided,
+//         height: '25px',
+//     })
+// }
+// //#endregion
+
+// export default function Buscador(){
+//     const [busqueda, setBusqueda] = useState(false)
+//     const [tipo, setTipo] = useState("")
+//     const [indice, setIndice] = useState(0)
+//     const entradaRef = useRef()
+
+//     const [resultado, setResultado] = React.useState({})
+//     const [personajesDescubiertos, setPersonajesDescubiertos] = React.useState([]);
+//     const [navesDescubiertas, setNavesDescubiertas] = React.useState([]);
+//     const [planetasDescubiertos, setPlanetasDescubiertos] = React.useState([]);
+    
+//     // useEffect(() => {      
+//     // }, [])
+  
+//     // useEffect(() => {      
+//     // }, [personajesDescubiertos])
+  
+//     // useEffect(() => {      
+//     // }, [navesDescubiertas])
+  
+//     // useEffect(() => {      
+//     // }, [planetasDescubiertos]) 
+
+
+//     const handleKeyDown = (event) => {
+//         if(event.key === "Enter" && (indice !== 0 && tipo !== "")) setBusqueda(true)
+//         else (setBusqueda(false))
+//     }
+
+//     const handleCambioRecuperadorElementos = (event) =>{
+//         // Aquí se trata de actualizar el componente correspondiente según el tipo que estuviese
+//         // marcado en el momento de efectuar la búsqueda si, tras realizar esta, se obtuviese un 
+//         // resultado válido. En caso contrario se omite la actualización de la lista. 
+//         if(resultado !== undefined){
+//             switch(event.tipo){
+//                 case "personajes":{
+//                     setPersonajesDescubiertos(personajesDescubiertos => [...personajesDescubiertos, resultado]);
+//                     break;
+//                     }
+//                 case "naves": {
+//                     setNavesDescubiertas(navesDescubiertas => [...navesDescubiertas, resultado]);
+//                     break;
+//                     }
+//                 case "planetas": {
+//                     setPlanetasDescubiertos(navesDescubiertas => [...navesDescubiertas, resultado]);
+//                     break;
+//                     }
+//                 default: {return}
+//             }
+//         }
+//     }
+
+//     const handleSelect = (event) => {
+//         setTipo(event.value)
+//         if(event !== "") console.log(event)
+//     }
+
+//     function buttonBuscarPressed(){
+//         // Para las pruebas se eliminan las condiciones para evitar tener que andar introduciendo valores constantemente.
+//         if(tipo !== "" && indice !== 0 ) setBusqueda(true)
+//         else (setBusqueda(false))
+//         // setBusqueda(true)
+//     }
+    
+//     return(        
+//         <div style={{ display:'inline-block', fontSize:'15px'}}>
+//             <div style={{display:'inline-block', margin: '0 auto'}}>
+//                 <Select 
+//                     options={elementosSelect} 
+//                     className="m-3 pb-4" 
+//                     styles={estilosSelect1} 
+//                     // theme={temaSelect}
+//                     maxMenuHeight='200px'
+//                     autoFocus
+//                     isSearchable
+//                     placeholder="Elige un tipo"
+                    
+//                     onChange={handleSelect}
+//                     />
+//             </div>
+//             <input 
+//                 type="text" 
+//                 onChange={(e) => {setIndice(e.target.value)}} 
+//                 ref={entradaRef} 
+//                 onKeyDown={handleKeyDown}
+//                 />
+//             <button onClick={buttonBuscarPressed}>
+//                 {/* <img></img> */}
+//                 Buscar
+//             </button>
+//             {busqueda && <RecuperadorElementos tipo={tipo} value={indice} onChange={setResultado()}></RecuperadorElementos>}
+            
+//             <div style={{fontSize:"21px"}}>
+//                 <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod' }}>
+//                     <label>Personajes descubiertos</label>
+//                     <ListaPersonajesDescubiertos personajesDescubiertos={personajesDescubiertos}></ListaPersonajesDescubiertos>
+//                 </div>
+//                 <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod' }}>
+//                     <label>Naves descubiertas</label>
+//                     <ListaNavesDescubiertas navesDescubiertas={navesDescubiertas}></ListaNavesDescubiertas>
+//                 </div>
+//                 <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod' }}>
+//                     <label>Planetas descubiertos</label>
+//                     <ListaPlanetasDescubiertos planetasDescubiertos={planetasDescubiertos}></ListaPlanetasDescubiertos>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
+
+
+//     //TEMA PARA SELECT
+//     // function temaSelect(theme) {
+//     //     return {
+//     //         ...theme,
+//     //         colors: {
+//     //             ...theme.colors,
+//     //             primary25: 'red',
+//     //             primary: 'green'
+//     //         }
+//     //     }
+//     // }   
+
+// ////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////Mosquetones alternativos en adelante///////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// //////////////////////////////Mosquetón alternativo 1/////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// import React, {Component, useState, useEffect, useRef } from "react"
+// import Select from 'react-select'
+// // "react-select/dist/declarations/src/Select"
+// import ListaPersonajesDescubiertos from './ListaPersonajesDescubiertos'
+// import ListaNavesDescubiertas from './ListaNavesDescubiertas'
+// import ListaPlanetasDescubiertos from './ListaPlanetasDescubiertos'
+// import RecuperadorElementos from "./RecuperadorElementos"
+// import { getValue } from "@testing-library/user-event/dist/utils"
+
+// const elementosSelect = [
+//     // { value: 'todos', label: 'Todos' },
+//     { value: 'personajes', label: 'Personajes' },
+//     { value: 'naves', label: 'Naves'},
+//     { value: 'planetas', label: 'Planetas'}
+// ]
+
+// //#region
+// const estilosSelect1 = {
+//     option: base => ({
+//         ...base,
+//         borderBottom: '1px dotted pink',
+//         color: 'red'
+//     }),
+//     control: (provided, state) => ({
+//         ...provided,
+//         background: '#bbb',
+//         borderColor: 'goldenrod',
+//         minHeight: '10px',
+//         height: 'auto',
+//         innerHeight: '5px',
+//         outerHeight: '5px',
+//         maxMenuHeight: '5px',
+//         margin: '10px'
+//     }),
+//     valueContainer: (provided, state) => ({
+//         ...provided,
+//         height: 'auto',
+//         padding: '0 6px'
+//     }),
+
+//     input: (provided, state) => ({
+//         ...provided,
+//         margin: '0px',
+//         padding: '0px',
+//         height: 'auto',
+
+//     }),
+
+//     placeholder: (provided, state) => ({
+//         ...provided,
+//         height: '18px'
+//     }),
+//     indicatorSeparator: state => ({
+//         display: 'none',
+//     }),
+//     indicatorsContainer: (provided, state) => ({
+//         ...provided,
+//         height: '25px',
+//     })
+// }
+// //#endregion
+
+// export default function Buscador(){
+//     const [busqueda, setBusqueda] = useState()
+//     const [buscando, setBuscando] = useState(false)
+//     const [tipo, setTipo] = useState("")
+//     const [indice, setIndice] = useState(0)
+//     const entradaRef = useRef()
+
+//     const [resultado, setResultado] = React.useState({})
+//     const [personajesDescubiertos, setPersonajesDescubiertos] = React.useState([]);
+//     const [navesDescubiertas, setNavesDescubiertas] = React.useState([]);
+//     const [planetasDescubiertos, setPlanetasDescubiertos] = React.useState([]);
+    
+//     // useEffect(() => {      
+//     // }, [])
+    
+//     useEffect(() => {
+//         getFetch()      
+//     }, [busqueda])
+  
+//     // useEffect(() => {      
+//     // }, [personajesDescubiertos])
+  
+//     // useEffect(() => {      
+//     // }, [navesDescubiertas])
+  
+//     // useEffect(() => {      
+//     // }, [planetasDescubiertos]) 
+
+
+//     const handleKeyDown = (event) => {
+//         if(event.key === "Enter" && (indice !== 0 && tipo !== "")) setBuscando(true)
+//         else (setBuscando(false))
+//     }
+
+//     const handleCambioRecuperadorElementos = (event) =>{
+//         // Aquí se trata de actualizar el componente correspondiente según el tipo que estuviese
+//         // marcado en el momento de efectuar la búsqueda si, tras realizar esta, se obtuviese un 
+//         // resultado válido. En caso contrario se omite la actualización de la lista. 
+//         if(resultado !== undefined){
+//             switch(event.tipo){
+//                 case "personajes":{
+//                     setPersonajesDescubiertos(personajesDescubiertos => [...personajesDescubiertos, resultado]);
+//                     break;
+//                     }
+//                 case "naves": {
+//                     setNavesDescubiertas(navesDescubiertas => [...navesDescubiertas, resultado]);
+//                     break;
+//                     }
+//                 case "planetas": {
+//                     setPlanetasDescubiertos(navesDescubiertas => [...navesDescubiertas, resultado]);
+//                     break;
+//                     }
+//                 default: {return}
+//             }
+//         }
+//     }
+
+//     const handleSelect = (event) => {
+//         setTipo(event.value)
+//         if(event !== "") console.log(event)
+//     }
+
+//     function buttonBuscarPressed(){
+//         // Para las pruebas se eliminan las condiciones para evitar tener que andar introduciendo valores constantemente.
+//         if(tipo !== "" && indice !== 0 ) setBuscando(true)
+//         else (setBuscando(false))
+//         // setBusqueda(true)
+//     }
+
+
+//     const regularFormat = '/?format=json'
+//     const wookieTranslation = '/?format=wookiee'
+
+//     async function getFetch() {
+//         console.log("Tipo: " + tipo)
+//         console.log("Indice: " + indice)
+//         if (indice !== 0) {
+//             switch (tipo) {
+
+//                 case "personajes": {
+//                     setBusqueda(await fetch(`https://swapi.dev/api/people/${indice}/?format=json`)
+//                         .then(response => {
+//                             return response.json()
+//                         }))
+//                     // .then(data => {                    
+//                     //     console.log("Personaje data: ", JSON.stringify(data))
+//                     // })
+//                     // console.log("Resultado búsqueda: ", )
+//                     break
+//                 }
+
+//                 case "naves": {
+//                     var nave = await fetch(`https://swapi.dev/api/starships/${indice}${regularFormat}`)
+//                         .then(response => {
+//                             return response.json()
+//                         })
+//                     // .then(data => {                    
+//                     //     console.log("Nave data: ", JSON.stringify(data))
+//                     //     return JSON.stringify(data)
+//                     // })            
+//                     console.log("Resultado búsqueda: ", nave)
+//                     setBusqueda(nave)
+//                     break
+//                 }
+
+
+//                 case "planetas": {
+//                     var planeta = await fetch(`https://swapi.dev/api/planets/${indice}/?format=json`)
+//                         .then(response => {
+//                             return response.json()
+//                         })
+//                     // .then(data => {                    
+//                     //     console.log("Planeta data: " + JSON.stringify(data))
+//                     // })
+//                     setBusqueda(planeta)
+//                     break
+//                 }
+
+//                 default: {
+//                     return ({})
+//                 }
+//             }
+//         }
+//     }      
+    
+    
+//     return(        
+//         <div style={{ display:'inline-block', fontSize:'15px'}}>
+//             <div style={{display:'inline-block', margin: '0 auto'}}>
+//                 <Select 
+//                     options={elementosSelect} 
+//                     className="m-3 pb-4" 
+//                     styles={estilosSelect1} 
+//                     // theme={temaSelect}
+//                     maxMenuHeight='200px'
+//                     autoFocus
+//                     isSearchable
+//                     placeholder="Elige un tipo"
+                    
+//                     onChange={handleSelect}
+//                     />
+//             </div>
+//             <input 
+//                 type="text" 
+//                 onChange={(e) => {setIndice(e.target.value)}} 
+//                 ref={entradaRef} 
+//                 onKeyDown={handleKeyDown}
+//                 />
+//             <button onClick={buttonBuscarPressed}>
+//                 {/* <img></img> */}
+//                 Buscar
+//             </button>
+//             {buscando && <RecuperadorElementos tipo={tipo} value={indice} busqueda={busqueda}></RecuperadorElementos>}
+            
+//             <div style={{fontSize:"21px"}}>
+//                 <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod' }}>
+//                     <label>Personajes descubiertos</label>
+//                     <ListaPersonajesDescubiertos personajesDescubiertos={personajesDescubiertos}></ListaPersonajesDescubiertos>
+//                 </div>
+//                 <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod' }}>
+//                     <label>Naves descubiertas</label>
+//                     <ListaNavesDescubiertas navesDescubiertas={navesDescubiertas}></ListaNavesDescubiertas>
+//                 </div>
+//                 <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod' }}>
+//                     <label>Planetas descubiertos</label>
+//                     <ListaPlanetasDescubiertos planetasDescubiertos={planetasDescubiertos}></ListaPlanetasDescubiertos>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
+
+
+//     //TEMA PARA SELECT
+//     // function temaSelect(theme) {
+//     //     return {
+//     //         ...theme,
+//     //         colors: {
+//     //             ...theme.colors,
+//     //             primary25: 'red',
+//     //             primary: 'green'
+//     //         }
+//     //     }
+//     // }   
+
+
+// ////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////////
+
+

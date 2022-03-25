@@ -1,0 +1,358 @@
+    
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////Primer mosquetón/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // if(value!==0){
+    //     switch (tipo){
+            
+    //         case "personajes":{
+    //             var personaje = fetch(`https://swapi.dev/api/people/${value}/?format=json`)
+    //             .then(response => {
+    //                 return response.json()
+    //             }).then(data => {                    
+    //                 console.log("Personaje data: " + JSON.stringify(data))
+    //             })
+    //             console.log("Nombre del personaje: " + personaje)
+    //             console.log("Personaje.response: " + personaje.response)
+
+    //             return(
+    //             <React.Fragment>
+    //                 <Personaje id={value} personaje={personaje}></Personaje>
+    //             </React.Fragment>
+    //         )}
+
+
+
+
+    //         case "naves":{
+    //             var obj;
+    //             var nave = await fetch(`https://swapi.dev/api/starships/${value}/?format=json`)
+    //             .then(response => {
+    //                 return response.json()
+    //             }).then(data => {                    
+    //                 console.log("Nave data: " + JSON.stringify(data))
+    //                 return JSON.stringify(data)
+    //             })            
+    //             console.log("Esta es la nave: " + nave)
+    //             return(
+    //             <React.Fragment>
+    //                 <Nave id={value} nave={nave}></Nave>
+    //             </React.Fragment>
+    //         )}
+
+            
+    //         case "planetas":{
+    //             var planeta = fetch(`https://swapi.dev/api/planets/${value}/?format=json`)
+    //             .then(response => {
+    //                 return response.json()
+    //             }).then(data => {                    
+    //                 console.log("Planeta data: " + JSON.stringify(data))
+    //             })
+    //             return(
+    //             <React.Fragment>
+    //                 <Planeta id={value} planeta={planeta}></Planeta>
+    //             </React.Fragment>
+    //         )}
+    //         default: {return(
+    //             <React.Fragment>
+    //                 <label>Elige un valor en el desplegable "Tipo"</label>
+    //                 {/* <ListaPersonajes></ListaPersonajes> */}
+    //             </React.Fragment>
+    //         )}
+    //     }    
+    // } else {
+    //     return(
+    //         <React.Fragment>
+    //             <label>Introduce un número (mayor que 0) para buscar</label>
+    //         </React.Fragment>
+    //     )
+    // }
+// }
+
+
+// async function getFetch(){
+//     var nave = await fetch(`https://swapi.dev/api/starships/${value}/?format=json`)
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {                    
+//         console.log("Nave data: " + JSON.stringify(data))
+//         return JSON.stringify(data)
+//     })            
+// }    
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+    
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////Segundo mosquetón/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // if(value!==0){
+    //     switch (tipo){
+            
+    //         case "personajes":{
+    //             var personaje = fetch(`https://swapi.dev/api/people/${value}/?format=json`)
+    //             .then(response => {
+    //                 return response.json()
+    //             }).then(data => {                    
+    //                 console.log("Personaje data: " + JSON.stringify(data))
+    //             })
+    //             console.log("Nombre del personaje: " + personaje)
+    //             console.log("Personaje.response: " + personaje.response)
+
+    //             return(
+    //             <React.Fragment>
+    //                 <Personaje id={value} personaje={personaje}></Personaje>
+    //             </React.Fragment>
+    //         )}
+
+
+
+
+    //         case "naves":{
+    //             var obj;
+    //             var nave = await fetch(`https://swapi.dev/api/starships/${value}/?format=json`)
+    //             .then(response => {
+    //                 return response.json()
+    //             }).then(data => {                    
+    //                 console.log("Nave data: " + JSON.stringify(data))
+    //                 return JSON.stringify(data)
+    //             })            
+    //             console.log("Esta es la nave: " + nave)
+    //             return(
+    //             <React.Fragment>
+    //                 <Nave id={value} nave={nave}></Nave>
+    //             </React.Fragment>
+    //         )}
+
+            
+    //         case "planetas":{
+    //             var planeta = fetch(`https://swapi.dev/api/planets/${value}/?format=json`)
+    //             .then(response => {
+    //                 return response.json()
+    //             }).then(data => {                    
+    //                 console.log("Planeta data: " + JSON.stringify(data))
+    //             })
+    //             return(
+    //             <React.Fragment>
+    //                 <Planeta id={value} planeta={planeta}></Planeta>
+    //             </React.Fragment>
+    //         )}
+    //         default: {return(
+    //             <React.Fragment>
+    //                 <label>Elige un valor en el desplegable "Tipo"</label>
+    //                 {/* <ListaPersonajes></ListaPersonajes> */}
+    //             </React.Fragment>
+    //         )}
+    //     }    
+    // } else {
+    //     return(
+    //         <React.Fragment>
+    //             <label>Introduce un número (mayor que 0) para buscar</label>
+    //         </React.Fragment>
+    //     )
+    // }
+// }
+
+
+// async function getFetch(){
+//     var nave = await fetch(`https://swapi.dev/api/starships/${value}/?format=json`)
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {                    
+//         console.log("Nave data: " + JSON.stringify(data))
+//         return JSON.stringify(data)
+//     })            
+// }    
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+    
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////Tercer mosquetón/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// import React from "react"
+// import Personaje from './Personaje'
+// import Nave from './Nave'
+// import Planeta from './Planeta'
+// import { useState } from "react"
+
+// export default function RecuperadorElementos({tipo = "",  value = 0}){
+//     console.log("Tipo: " + tipo)
+//     console.log("Indice: " + value)
+
+//     const [myData, setMyData] = useState({});
+
+//   React.useEffect(() => {
+//     const proba = async () => {
+//         console.log("Tipo: " + tipo)
+//         console.log("Indice: " + value)
+//         switch (tipo){
+            
+//             case "personajes":{
+//                 var personaje = await fetch(`https://swapi.dev/api/people/${value}/?format=json`)
+//                 .then(response => {
+//                     response.json()
+//                 }).then(data => {                    
+//                     console.log("Personaje data: ", JSON.stringify(data))
+//                 })
+//                 console.log("Nombre del personaje: ", personaje)
+//                 console.log("Personaje.response: ", personaje.response)
+    
+//                 return personaje
+//             }
+    
+//             case "naves":{
+//                 var nave = await fetch(`https://swapi.dev/api/starships/${value}/?format=json`)
+//                 .then(response => {
+//                     response.json()
+//                 })           
+//                 console.log("Esta es la nave: ", nave)
+//                 return nave
+//             }
+    
+            
+//             case "planetas":{
+//                 var planeta = await fetch(`https://swapi.dev/api/planets/${value}/?format=json`)
+//                 .then(response => {
+//                     response.json()
+//                 }).then(data => {                    
+//                     console.log("Planeta data: ", JSON.stringify(data))
+//                 })
+//                 return planeta
+//             }
+                
+//             default: {return({})
+//             }
+//         }
+//     };
+//     setMyData(proba);
+//   }, [])
+
+//   if (myData === {}) return <div>Loading...</div>
+//   console.log("MyData: ", myData)
+//   return(
+//       <React.Fragment>
+
+//         {tipo === "personajes" && <Personaje data={myData}></Personaje>}
+//         {tipo === "naves" && <Nave data={myData}></Nave>}
+//         {tipo === "planetas" && <Planeta data={myData}></Planeta>}
+//         {(tipo === "" || value === 0)  && <label>Introduce un número mayor que 0 y selecciona un tipo para buscar</label>}
+        
+//       </React.Fragment>
+//   )
+// }
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+    
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// //////////////////////////////Cuarto mosquetón/////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// import React from "react"
+// import Personaje from './Personaje'
+// import Nave from './Nave'
+// import Planeta from './Planeta'
+// import { useState, useEffect } from "react"
+
+// export default function RecuperadorElementos({ tipo = "", value = 0 }) {
+//     console.log("Tipo: " + tipo)
+//     console.log("Indice: " + value)
+
+//     const regularFormat = '/?format=json'
+//     const wookieTranslation = '/?format=wookiee'
+
+//     const [objetoPersonaje, setObjetoPersonaje] = useState({})
+//     const [objetoNave, setObjetoNave] = useState({})
+//     const [objetoPlaneta, setObjetoPlaneta] = useState({})
+
+//     useEffect(() => {
+//         getFetch()
+//     }, [])
+
+//     async function getFetch() {
+//         console.log("Tipo: " + tipo)
+//         console.log("Indice: " + value)
+//         if (value !== 0) {
+//             switch (tipo) {
+
+//                 case "personajes": {
+//                     var personaje = await fetch(`https://swapi.dev/api/people/${value}/?format=json`)
+//                         .then(response => {
+//                             return response.json()
+//                         })
+//                     // .then(data => {                    
+//                     //     console.log("Personaje data: ", JSON.stringify(data))
+//                     // })
+//                     console.log("Nombre del personaje: ", personaje)
+//                     console.log("Personaje.response: ", personaje.response)
+//                     setObjetoPersonaje(personaje)
+//                     return (personaje)
+//                 }
+
+//                 case "naves": {
+//                     var nave = await fetch(`https://swapi.dev/api/starships/${value}${regularFormat}`)
+//                         .then(response => {
+//                             return response.json()
+//                         })
+//                     // .then(data => {                    
+//                     //     console.log("Nave data: ", JSON.stringify(data))
+//                     //     return JSON.stringify(data)
+//                     // })            
+//                     console.log("Esta es la nave: ", nave)
+//                     setObjetoNave(nave)
+//                     return (nave)
+//                 }
+
+
+//                 case "planetas": {
+//                     var planeta = await fetch(`https://swapi.dev/api/planets/${value}/?format=json`)
+//                         .then(response => {
+//                             return response.json()
+//                         })
+//                     // .then(data => {                    
+//                     //     console.log("Planeta data: " + JSON.stringify(data))
+//                     // })
+//                     setObjetoPlaneta(planeta)
+//                     return ({ planeta })
+//                 }
+
+//                 default: {
+//                     return ({})
+//                 }
+//             }
+//         }
+//     }
+//     return (
+//         <React.Fragment>
+
+//             {
+//                 //Si se encuentra un nuevo personaje/nave/planeta se mostrará una label indicándolo.
+//                 //Si ya existiese en el registro un personaje/nave/planeta con ese id, se mostrará otra
+//                 //label con el texto: "Ese personaje/nave/planeta ya lo conoces, desgraciao."
+//                 //{(!elemento.existe) && <label></label>}
+//             }
+
+//             {tipo === "personajes" && <Personaje data={objetoPersonaje}></Personaje>}
+//             {tipo === "naves" && <Nave data={objetoNave}></Nave>}
+//             {tipo === "planetas" && <Planeta data={objetoPlaneta}></Planeta>}
+//             {(tipo === "" || value === 0) && <label>Introduce un número mayor que 0 y selecciona un tipo para buscar</label>}
+
+//         </React.Fragment>
+//     )
+// }
+
+
+
+
+// ////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////////
