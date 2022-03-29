@@ -153,41 +153,82 @@ export default function RecuperadorElementos({ tipo = "", language="human", valu
     }
     return (
         <React.Fragment>
+            
+            <div id="scroller">
+                {/* <div id="content">
+                    <p>The DevDrawer was inspired to create something for nerds and geeks alike but unfortunately he missed his own deadline to create something for the day in honor of Star Wars. This episode is to help fix that. So, let's get started.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. </p>
+                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. </p>
+                    <p>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. </p>
+                    <p>Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. </p>
+                    <p>Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. </p>
+                </div> */}
+                <div id="content">
+                    <div style={{display:"inline-block", margin:20, maxWidth:"500px"}}>
+                        {(tipo === "personajes" && encontrado === false) && <label style={{fontSize: "35px", color:"skyblue"}}><br/>{objetoPersonaje.name}</label>}
+                        {(tipo === "personajes" && encontrado === true) && <label style={{ textAlign:"center", fontSize: "50px"}}>{objetoPersonaje.name}</label>}
+                        {(tipo === "personajes" && language==="human" ) && <FichaTecnicaPersonaje elemento={objetoPersonaje}></FichaTecnicaPersonaje>}
 
-            {
-                //Si se encuentra un nuevo personaje/nave/planeta se mostrará una label indicándolo.
-                //Si ya existiese en el registro un personaje/nave/planeta con ese id, se mostrará otra
-                //label con el texto: "Ese personaje/nave/planeta ya lo conoces, desgraciao."
-                //{(!elemento.existe) && <label></label>}
-            }
-            <div style={{display:"inline-block", margin:20}}>
-                {(tipo === "personajes" && encontrado === false) && <label style={{fontSize: "25px", color:"skyblue"}}><br/>{objetoPersonaje.name}</label>}
-                {(tipo === "personajes" && encontrado === true) && <label style={{fontSize: "25px", textDecoration:"underline", textDecorationStyle:"double"}}>{objetoPersonaje.name}</label>}
-                {/* Aquí convendría ocultar la ficha técnica o cambiarla para otra ubicación, accesible a través de un enlace*/}
-                {(tipo === "personajes" && language==="human" ) && <FichaTecnicaPersonaje elemento={objetoPersonaje}></FichaTecnicaPersonaje>}
+                        {(tipo === "naves" && encontrado === false) && <label style={{fontSize: "35px", color:"skyblue"}}> {objetoNave.name}</label>}
+                        {(tipo === "naves" && encontrado === true)  && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoNave.name}</label>}
+                        {tipo === "naves" && <FichaTecnicaNave elemento={objetoNave}></FichaTecnicaNave>}
 
-                {(tipo === "naves" && encontrado === false) && <label style={{fontSize: "25px", color:"skyblue"}}> {objetoNave.name}</label>}
-                {(tipo === "naves" && encontrado === true)  && <label style={{fontSize: "25px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoNave.name}</label>}
-                {tipo === "naves" && <FichaTecnicaNave elemento={objetoNave}></FichaTecnicaNave>}
+                        {(tipo === "planetas" && encontrado === false) && <label style={{fontSize: "35px", color:"skyblue"}}> {objetoPlaneta.name}</label>}
+                        {(tipo === "planetas" && encontrado === true) && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoPlaneta.name}</label>}
+                        {tipo === "planetas" && <FichaTecnicaPlaneta elemento={objetoPlaneta}></FichaTecnicaPlaneta>}
+                        
+                        {/* Ahora los elementos para la version wookiee */}
+                        
+                        {((tipo === "personajes" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}><br/>{objetoPersonaje.whrascwo}</label>}
+                        {(tipo === "personajes" && language==="wookiee" ) && <FichaTecnicaPersonaje elemento={objetoPersonaje}></FichaTecnicaPersonaje>}
 
-                {(tipo === "planetas" && encontrado === false) && <label style={{fontSize: "25px", color:"skyblue"}}> {objetoPlaneta.name}</label>}
-                {(tipo === "planetas" && encontrado === true) && <label style={{fontSize: "25px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoPlaneta.name}</label>}
-                {tipo === "planetas" && <FichaTecnicaPlaneta elemento={objetoPlaneta}></FichaTecnicaPlaneta>}
-                
+                        {((tipo === "naves" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoNave.whrascwo}</label>}
+                        {tipo === "naves" && <FichaTecnicaNave elemento={objetoNave}></FichaTecnicaNave>}
+
+                        {((tipo === "planetas" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoPlaneta.whrascwo}</label>}
+                        {tipo === "planetas" && <FichaTecnicaPlaneta elemento={objetoPlaneta}></FichaTecnicaPlaneta>}
+
+
+                        {(tipo === "" || value === 0) && <label>Introduce un número mayor que 0 y selecciona un tipo para buscar</label>}
+                    </div>
+                </div>
+
                 {/* Ahora los elementos para la version wookiee */}
                 
-                {((tipo === "personajes" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "25px", textDecoration:"underline", textDecorationStyle:"double"}}><br/>{objetoPersonaje.whrascwo}</label>}
-                {(tipo === "personajes" && language==="wookiee" ) && <FichaTecnicaPersonaje elemento={objetoPersonaje}></FichaTecnicaPersonaje>}
+                {(tipo === "" || value === 0) && <label>Introduce un número mayor que 0 y selecciona un tipo para buscar</label>}
+            </div>
 
-                {((tipo === "naves" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "25px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoNave.whrascwo}</label>}
+
+
+            {/* BACKUP */}
+
+            {/* <div style={{display:"inline-block", margin:20, maxWidth:"500px"}}>
+                {(tipo === "personajes" && encontrado === false) && <label style={{fontSize: "35px", color:"skyblue"}}><br/>{objetoPersonaje.name}</label>}
+                {(tipo === "personajes" && encontrado === true) && <label style={{fontSize: "35px"}}>{objetoPersonaje.name}</label>}
+                {(tipo === "personajes" && language==="human" ) && <FichaTecnicaPersonaje elemento={objetoPersonaje}></FichaTecnicaPersonaje>}
+
+                {(tipo === "naves" && encontrado === false) && <label style={{fontSize: "35px", color:"skyblue"}}> {objetoNave.name}</label>}
+                {(tipo === "naves" && encontrado === true)  && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoNave.name}</label>}
                 {tipo === "naves" && <FichaTecnicaNave elemento={objetoNave}></FichaTecnicaNave>}
 
-                {((tipo === "planetas" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "25px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoPlaneta.whrascwo}</label>}
+                {(tipo === "planetas" && encontrado === false) && <label style={{fontSize: "35px", color:"skyblue"}}> {objetoPlaneta.name}</label>}
+                {(tipo === "planetas" && encontrado === true) && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoPlaneta.name}</label>}
+                {tipo === "planetas" && <FichaTecnicaPlaneta elemento={objetoPlaneta}></FichaTecnicaPlaneta>}
+                
+                
+                
+                {((tipo === "personajes" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}><br/>{objetoPersonaje.whrascwo}</label>}
+                {(tipo === "personajes" && language==="wookiee" ) && <FichaTecnicaPersonaje elemento={objetoPersonaje}></FichaTecnicaPersonaje>}
+
+                {((tipo === "naves" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoNave.whrascwo}</label>}
+                {tipo === "naves" && <FichaTecnicaNave elemento={objetoNave}></FichaTecnicaNave>}
+
+                {((tipo === "planetas" && encontrado === true) && language === "wookiee") && <label style={{fontSize: "35px", textDecoration:"underline", textDecorationStyle:"double"}}> {objetoPlaneta.whrascwo}</label>}
                 {tipo === "planetas" && <FichaTecnicaPlaneta elemento={objetoPlaneta}></FichaTecnicaPlaneta>}
 
 
                 {(tipo === "" || value === 0) && <label>Introduce un número mayor que 0 y selecciona un tipo para buscar</label>}
-            </div>
+            </div> */}
         </React.Fragment>
     )
 }
