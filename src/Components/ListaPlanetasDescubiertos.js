@@ -7,9 +7,9 @@ export default function ListaPlanetasDescubiertos({planetasDescubiertos}){
     let contador = 1;
 
     return (
-        <ol style={{listStyleType:"square"}}>
+        <ol style={{listStyleType:"square", fontFamily:"cursive"}}>
             {planetasDescubiertos.map(planeta => {
-                console.log("Este es el planeta mapeado " + contador++ + ": ", planeta)
+                // console.log("Este es el planeta mapeado " + contador++ + ": ", planeta)
                 return <Planeta key={planeta.name} data={planeta}></Planeta>
             })}
         </ol>

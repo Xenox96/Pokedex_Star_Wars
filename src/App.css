@@ -64,3 +64,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+.baseLetrasIntro{
+  height: 50%;
+  width: 50%;
+}
+
+.letrasIntro{
+  height: 50%;
+  width: 50%;
+  transition: 18s;
+}
+
+.baseLetrasIntro .letrasIntro{
+  transform: translateY(-100%);
+}

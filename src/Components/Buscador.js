@@ -5,12 +5,18 @@ import ListaPersonajesDescubiertos from './ListaPersonajesDescubiertos'
 import ListaNavesDescubiertas from './ListaNavesDescubiertas'
 import ListaPlanetasDescubiertos from './ListaPlanetasDescubiertos'
 import RecuperadorElementos from "./RecuperadorElementos"
+import AnimatedText from "react-animated-text-content"
+import SlideInUp from "../Components/SlideInUp"
 
-const elementosSelect = [
+const elementosSelectTipo = [
     // { value: 'todos', label: 'Todos' },
     { value: 'personajes', label: 'Personajes' },
     { value: 'naves', label: 'Naves'},
     { value: 'planetas', label: 'Planetas'}
+]
+const elementosSelectLanguage = [
+    { value: 'human', label: 'Hooman' },
+    { value: 'wookiee', label: 'Wookiee'}
 ]
 
 //#region
@@ -47,7 +53,7 @@ const estilosSelect1 = {
 
     placeholder: (provided, state) => ({
         ...provided,
-        height: '18px'
+        height: '25px'
     }),
     indicatorSeparator: state => ({
         display: 'none',
@@ -61,7 +67,9 @@ const estilosSelect1 = {
 
 export default function Buscador(){
     const [busqueda, setBusqueda] = useState(false)
+    const [encontrado, setEncontrado] = useState(false)
     const [tipo, setTipo] = useState("")
+    const [language, setLanguage] = useState("human")
     const [indice, setIndice] = useState(0)
     const entradaRef = useRef()
     const [personajesDescubiertos, setPersonajesDescubiertos] = React.useState([]);
@@ -91,6 +99,11 @@ export default function Buscador(){
         if(event !== "") console.log(event)
     }
 
+    const handleSelectLanguage = (event) => {
+        setLanguage(event.value)
+        if(event !== "") console.log(event.value)
+    }
+
     function buttonBuscarPressed(){
         // Para las pruebas se eliminan las condiciones para evitar tener que andar introduciendo valores constantemente.
         if(tipo !== "" && indice !== 0 ) setBusqueda(true)
@@ -106,9 +119,9 @@ export default function Buscador(){
                     if(element.key === elemento?.key) encontrado = true
                 })
                 if (!encontrado) setPersonajesDescubiertos([...personajesDescubiertos, elemento])
-                console.log("Resultado comprobar: ", encontrado)
-                console.log("Elemento en guardar elemento:", elemento)
-                console.log("Personajes descubiertos: ", personajesDescubiertos)
+                // console.log("Resultado comprobar: ", encontrado)
+                // console.log("Elemento en guardar elemento:", elemento)
+                // console.log("Personajes descubiertos: ", personajesDescubiertos)
                 break
             }
             case "naves": {
@@ -134,48 +147,119 @@ export default function Buscador(){
     }
     
     return(        
-        <div style={{ display:'inline-block', fontSize:'15px'}}>
-            <div style={{display:'inline-block', margin: '0 auto'}}>
-                <Select 
-                    options={elementosSelect} 
-                    className="m-3 pb-4" 
-                    styles={estilosSelect1} 
-                    // theme={temaSelect}
-                    maxMenuHeight='200px'
-                    autoFocus
-                    isSearchable
-                    placeholder="Elige un tipo"
-                    
-                    onChange={handleSelect}
-                    />
-            </div>
-            <input 
-                type="text" 
-                onChange={(e) => {setIndice(e.target.value)}} 
-                ref={entradaRef} 
-                onKeyDown={handleKeyDown}
-                />
-            <button onClick={buttonBuscarPressed}>
-                {/* <img></img> */}
-                Buscar
-            </button>
-            <div style={{minHeight:"20px", color:"goldenrod", fontFamily:"cursive"}}>
-                {busqueda && <RecuperadorElementos tipo={tipo} value={indice} guardarElemento={guardarElemento}></RecuperadorElementos>}
-            </div>            
-            <div style={{fontSize:"21px", verticalAlign:"middle"}}>
-                <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod', verticalAlign:"top" }}>
-                    <label>Personajes descubiertos</label>
-                    <ListaPersonajesDescubiertos personajesDescubiertos={personajesDescubiertos}></ListaPersonajesDescubiertos>
+        <div>
+        <div style={{ display:'inline-block', fontSize:'17px'}}>
+            {!busqueda && <div>
+                <div style={{display:'inline-block', margin: '0 auto'}}>
+                    <Select 
+                        options={elementosSelectTipo} 
+                        className="m-3 pb-4" 
+                        styles={estilosSelect1} 
+                        // theme={temaSelect}
+                        // maxMenuHeight='200px'
+                        // autoFocus
+                        isSearchable
+                        placeholder="Elige un tipo"       
+                        onChange={handleSelect}
+                        />
                 </div>
-                <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod', verticalAlign:"top" }}>
-                    <label>Naves descubiertas</label>
-                    <ListaNavesDescubiertas navesDescubiertas={navesDescubiertas}></ListaNavesDescubiertas>
+                <div style={{display:"inline-block"}}>
+                    <input 
+                        type="text" 
+                        autoFocus
+                        style={{fontSize:"15px"}}
+                        onChange={(e) => {setIndice(e.target.value)}} 
+                        ref={entradaRef} 
+                        onKeyDown={handleKeyDown}
+                        />
+                    <button onClick={buttonBuscarPressed} style={{fontSize:"15px"}}>
+                        {/* <img></img> */}
+                        Buscar
+                    </button>
                 </div>
-                <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', textDecoration: 'underline', color: 'goldenrod', verticalAlign:"top" }}>
-                    <label>Planetas descubiertos</label>
-                    <ListaPlanetasDescubiertos planetasDescubiertos={planetasDescubiertos}></ListaPlanetasDescubiertos>
+                <div style={{display:'inline-block', margin: '0 auto'}}>
+                    <Select
+                        options={elementosSelectLanguage}
+                        defaultValue={{ label: "Hooman", value: "human" }} 
+                        className="m-3 pb-4" 
+                        styles={estilosSelect1} 
+                        // theme={temaSelect}
+                        // maxMenuHeight='200px'
+                        isSearchable                    
+                        onChange={handleSelectLanguage}
+                        />
                 </div>
-            </div>
+                {!busqueda && <div style={{fontSize:"21px", verticalAlign:"middle"}}>
+                    <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', color: 'goldenrod', verticalAlign:"top"}}>
+                        <h3 style={{textDecoration: 'underline', textDecorationStyle:"double", fontWeight:"lighter"}}>Personajes descubiertos</h3>
+                        <ListaPersonajesDescubiertos personajesDescubiertos={personajesDescubiertos}></ListaPersonajesDescubiertos>
+                    </div>
+                    <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', color: 'goldenrod', verticalAlign:"top" }}>
+                        <h3 style={{textDecoration: 'underline', textDecorationStyle:"double", fontWeight:"lighter"}}>Naves descubiertas</h3>
+                        <ListaNavesDescubiertas navesDescubiertas={navesDescubiertas}></ListaNavesDescubiertas>
+                    </div>
+                    <div style={{ display: 'inline-block', margin: 20, fontFamily: 'bold', color: 'goldenrod', verticalAlign:"top" }}>
+                        <h3 style={{textDecoration: 'underline', textDecorationStyle:"double", fontWeight:"lighter"}}>Planetas descubiertos</h3>
+                        <ListaPlanetasDescubiertos planetasDescubiertos={planetasDescubiertos}></ListaPlanetasDescubiertos>
+                    </div>
+                    {/* <div style={{marginLeft:"100px", minHeight:"20px", color:"goldenrod", textAlign:"center", display:"inline-block"}}>
+                        {busqueda && <RecuperadorElementos tipo={tipo} language={language} value={indice} guardarElemento={guardarElemento}></RecuperadorElementos>}
+                    </div>             */}
+                </div>}
+            </div>}
+
+            {/* {busqueda && <div className="flex items-start justify-between max-w-sm p-3 space-x-4 rounded-md dark:bg-coolGray-900 dark:text-coolGray-100" style={{}}>
+                <div className="flex flex-col flex-1 px-2 space-y-1">
+                    <div style={{ minHeight:"20px", color:"goldenrod", textAlign:"center", display:"inline-block"}}>
+                        <AnimatedText
+                            type="words"                            
+                            interval={-0.000000001}
+                            duration={4}
+                            animation={{x: '0px', y:"500px", scale:"10", ease: "linear"}}
+                            animationType="blocks"
+                            className="animated-paragraph"
+                            includeWhiteSpaces
+                            fontSize="40px">
+                            afsdafsdafsd  afsfsafas añfsdafjk
+                            {busqueda && <RecuperadorElementos tipo={tipo} language={language} value={indice} guardarElemento={guardarElemento}></RecuperadorElementos>}
+                        </AnimatedText>
+                    </div> 
+                </div>
+                <button type="button" title="Close snackbar" className="dark:border-transparent" onClick={() => setBusqueda(false)}>
+                    X
+                </button>
+            </div>} */}
+
+            
+
+
+        </div>
+            {busqueda && <div class="baseLetrasIntro">
+                <button type="button" title="Close snackbar" className="dark:border-transparent" onClick={() => setBusqueda(false)}>
+                    X
+                </button>
+                <div class="letrasIntro">
+                    <div style={{ minHeight:"20px", color:"goldenrod", textAlign:"center", display:"inline-block"}}>
+                       <p >sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                       <p>sdafjdñslfjsdñlfj</p>
+                    </div> 
+                </div>
+            </div>}
         </div>
     )
 }

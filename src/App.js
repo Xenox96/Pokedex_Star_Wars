@@ -19,7 +19,7 @@ function App() {
         {/* <CascoVaderSVG></CascoVaderSVG> */}
         <div>
           <div>
-            <img src={cascoVader} className="App-logo-vader" alt="casco vader" style={{opacity:"0.6"}}/>
+            <img src={cascoVader} className="App-logo-vader" alt="casco vader" style={{opacity:"0.55"}}/>
           </div>
         </div>
         <p className='sith-text'>
